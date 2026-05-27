@@ -1,0 +1,68 @@
+package com.example.radnom.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "radnom")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "cartItems"})
+public class Product {
+
+    @Id
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "product_id")
+    private Integer id;
+
+    @Column(name = "product_name")
+    private String productName;
+
+    @Column(name = "price")
+    private Integer price;
+
+    @Column(name = "product_date")
+    private String productDate;
+
+
+    @Column(name = "description", length = 1000)
+    private String description = "Brak opisu produktu";
+
+    @Column(name = "category")
+    private String category = "Inne";
+
+    @Column(name = "image_url")
+    private String imageUrl = "/images/default-product.jpg";
+
+    @Column(name = "stock")
+    private Integer stock = 0;
+
+    @Column(name = "weight")
+    private Double weight;
+
+    @Column(name = "dimensions")
+    private String dimensions;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "rating")
+    private Double rating = 0.0;
+
+    @Column(name = "review_count")
+    private Integer reviewCount = 0;
+
+    public Integer getProductId() {
+        return this.id;
+    }
+
+    public void setProductId(Integer productId) {
+        this.id = productId;
+    }
+}

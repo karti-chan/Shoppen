@@ -1,0 +1,32 @@
+﻿# Maven
+target/
+*.jar
+*.war
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# System
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+hs_err_pid*.log
+replay_pid*.log
+
+# Frontend
+
+# Built assets
+
+# Environment
+src/main/java/com/example/radnom/.env
+.env.local
+
+# Spring Boot profiles
+application.properties
+application-prod.properties
+application-sandbox.properties
