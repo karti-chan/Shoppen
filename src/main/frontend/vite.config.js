@@ -8,7 +8,7 @@ export default defineConfig({
   port: 5173,
     proxy: {
       '/api': {
-        target: 'http://localhost:8081',  // ← SPRING BOOT BACKEND
+        target: 'http://localhost:8080',  // ← SPRING BOOT BACKEND
         changeOrigin: true,
         secure: false,
         // rewrite: (path) => path.replace(/^\/api/, '') // opcjonalnie

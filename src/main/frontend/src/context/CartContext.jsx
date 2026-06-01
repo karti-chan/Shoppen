@@ -88,7 +88,7 @@ export const CartProvider = ({ children }) => {
             }
 
             console.log('🔄 Fetching cart from API...');
-            const response = await axios.get('http://localhost:8081/api/cart', {
+            const response = await axios.get('http://localhost:8080/api/cart', {
                 headers: getAuthHeaders()
             });
 
@@ -186,7 +186,7 @@ export const CartProvider = ({ children }) => {
         }
 
         // 3. Użyj QUERY PARAMS w URL zamiast params w config
-        const url = `http://localhost:8081/api/cart/add?productId=${productId}&quantity=${quantity}`;
+        const url = `http://localhost:8080/api/cart/add?productId=${productId}&quantity=${quantity}`;
         console.log('📤 Request URL:', url);
 
         try {
@@ -258,7 +258,7 @@ export const CartProvider = ({ children }) => {
             }
 
             // UWAGA: Backend używa @RequestParam, więc musimy użyć query params
-            const url = `http://localhost:8081/api/cart/remove?productId=${productId}`;
+            const url = `http://localhost:8080/api/cart/remove?productId=${productId}`;
             console.log(`➖ Removing product ${productId} from cart...`);
 
             const response = await axios.delete(url, {
@@ -294,7 +294,7 @@ export const CartProvider = ({ children }) => {
             }
 
             // UWAGA: Backend używa @RequestParam, więc musimy użyć query params w URL
-            const url = `http://localhost:8081/api/cart/update?productId=${productId}&quantity=${quantity}`;
+            const url = `http://localhost:8080/api/cart/update?productId=${productId}&quantity=${quantity}`;
             console.log(`✏️ Updating product ${productId} quantity to ${quantity}`);
 
             const response = await axios.put(
@@ -334,7 +334,7 @@ export const CartProvider = ({ children }) => {
             }
 
             console.log('🗑️ Clearing cart...');
-            await axios.delete('http://localhost:8081/api/cart/clear', {
+            await axios.delete('http://localhost:8080/api/cart/clear', {
                 headers: getAuthHeaders()
             });
             setCart({ items: [] });
@@ -440,7 +440,7 @@ export const CartProvider = ({ children }) => {
                 try {
                     console.log('🔬 Testing API with fetch...');
                     const response = await fetch(
-                        'http://localhost:8081/api/cart/add?productId=1&quantity=1',
+                        'http://localhost:8080/api/cart/add?productId=1&quantity=1',
                         {
                             method: 'POST',
                             headers: {

@@ -19,14 +19,14 @@ function ProductList() {
         setLoading(true)
 
 
-        const productsResponse = await fetch('http://localhost:8081/api/products')
+        const productsResponse = await fetch('http://localhost:8080/api/products')
         const productsData = await productsResponse.json()
         console.log('📦 Otrzymane produkty:', productsData)
 
         setProducts(productsData)
         setFilteredProducts(productsData)
 
-        const categoriesResponse = await fetch('http://localhost:8081/api/products/categories')
+        const categoriesResponse = await fetch('http://localhost:8080/api/products/categories')
         const categoriesData = await categoriesResponse.json()
         console.log('🏷️ Kategorie:', categoriesData)
 
