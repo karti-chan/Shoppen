@@ -1,62 +1,62 @@
 # Shoppen (Radnom-App) 🛒
 
-Projekt to nowoczesna aplikacja e-commerce typu SPA (Single Page Application) stworzona w architekturze klient-serwer. Składa się z reaktywnego frontendu napisanego w **React + Vite** oraz bezpiecznego, wydajnego backendu opartego na **Spring Boot**.
+A modern e-commerce SPA (Single Page Application) built with a client-server architecture. It features a reactive frontend written in **React + Vite** and a secure, high-performance backend powered by **Spring Boot**.
 
-## 🚀 Technologie
+## 🚀 Technologies
 
 ### Backend
 * **Java 17**
 * **Spring Boot 3.2.0**
-  * **Spring Web** – obsługa API REST.
-  * **Spring Security & JWT (JSON Web Tokens)** – autoryzacja i uwierzytelnianie użytkowników (w tym Refresh Tokens).
-  * **Spring Data JPA** – komunikacja z bazą danych.
-  * **Spring Boot Mail** – wysyłka powiadomień e-mail (np. resetowanie hasła).
-  * **Thymeleaf** – szablony wiadomości e-mail.
-* **Baza danych:** Wsparcie dla H2 (podczas developmentu) oraz MySQL (produkcyjnie).
-* **Lombok** – generowanie boilerplate-u (gettery/settery itp.).
+  * **Spring Web** – REST API development.
+  * **Spring Security & JWT (JSON Web Tokens)** – User authentication & authorization (including Refresh Tokens).
+  * **Spring Data JPA** – Database persistence.
+  * **Spring Boot Mail** – Email notification services (e.g. password resets).
+  * **Thymeleaf** – Email templates.
+* **Database:** Supports H2 (for development) and MySQL (production).
+* **Lombok** – Generates boilerplate code (getters/setters, builders, etc.).
 
 ### Frontend
 * **React 19**
-* **Vite** – szybkie środowisko budowania aplikacji.
-* **React Router DOM** – nawigacja po podstronach.
-* **Axios** – komunikacja HTTP z backendem, wyposażony w interceptory obsługujące automatyczne odświeżanie tokenów JWT.
-* **JS Cookie** – bezpieczne zarządzanie tokenami w przeglądarce.
+* **Vite** – Fast build tooling and dev server.
+* **React Router DOM** – Application routing.
+* **Axios** – HTTP client with custom interceptors for automatic JWT refreshing.
+* **JS Cookie** – Safe storage of client-side tokens.
 
 ---
 
-## 🌟 Główne Funkcjonalności
+## 🌟 Features
 
-1. **Kompletny system uwierzytelniania i autoryzacji:**
-   - Rejestracja i logowanie użytkowników.
-   - Zabezpieczenie endpointów za pomocą bezstanowego mechanizmu tokenów **JWT**.
-   - Mechanizm **Refresh Token** zapewniający dłuższą sesję bez konieczności ponownego logowania.
-   - Odzyskiwanie hasła za pomocą jednorazowych tokenów wysyłanych na adres e-mail.
-2. **Sklep i Katalog Produktów:**
-   - Przeglądanie listy produktów oraz szczegółów każdego z nich.
-   - Dynamiczna wyszukiwarka produktów.
-3. **Koszyk zakupowy:**
-   - Dodawanie, modyfikowanie liczby sztuk oraz usuwanie produktów z koszyka.
-   - Synchronizacja zawartości koszyka w bazie danych dla zalogowanych użytkowników.
-4. **Wieloprofilowa konfiguracja e-mail:**
-   - Dostosowanie zachowania usług pocztowych w zależności od profilu uruchomieniowego (`Dev`, `Sandbox`, `Prod`).
+1. **Authentication & Authorization System:**
+   - User sign-up and login.
+   - Stateless **JWT** authorization to protect secured endpoints.
+   - **Refresh Token** mechanism to keep users logged in securely.
+   - Password recovery via one-time tokens sent to the user's email.
+2. **Catalog & Product Browsing:**
+   - View list of products and product details.
+   - Dynamic search filter.
+3. **Shopping Cart:**
+   - Add, update quantities, and remove products from the cart.
+   - User cart persistence synchronized directly with the database.
+4. **Environment-Specific Mail Service Configuration:**
+   - Differentiated mail behaviors based on active profiles (`Dev`, `Sandbox`, `Prod`).
 
 ---
 
-## 🛠️ Jak uruchomić projekt lokalnie
+## 🛠️ Getting Started
 
-### Wymagania wstępne
-* Zainstalowane **JDK 17** lub nowsze.
-* Zainstalowany **Node.js** (rekomendowany LTS).
-* **Maven** (lub użycie dołączonego wrappera `mvnw`).
+### Prerequisites
+* **JDK 17** or higher installed.
+* **Node.js** installed (LTS version recommended).
+* **Maven** (or use the included Maven wrapper `mvnw`).
 
-### Krok 1: Klonowanie repozytorium
+### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/karti-chan/Shoppen.git
 cd Shoppen
 ```
 
-### Krok 2: Uruchomienie Backend (Spring Boot)
-1. Utwórz plik konfiguracji środowiskowej `application.properties` (lub `application-dev.properties`) w folderze `src/main/resources/`, jeśli nie istnieje. Przykładowa konfiguracja bazowa dla H2:
+### Step 2: Run the Backend (Spring Boot)
+1. Create an `application.properties` (or `application-dev.properties`) configuration file in `src/main/resources/` if it does not exist. Example configuration using H2:
    ```properties
    spring.datasource.url=jdbc:h2:file:./data/radnom_db
    spring.datasource.driverClassName=org.h2.Driver
@@ -65,34 +65,34 @@ cd Shoppen
    spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
    spring.h2.console.enabled=true
    ```
-2. Uruchom serwer aplikacji za pomocą Maven:
+2. Start the application:
    ```bash
-   # Windows:
+   # On Windows:
    mvnw.cmd spring-boot:run
    
-   # Linux/macOS:
+   # On Linux/macOS:
    ./mvnw spring-boot:run
    ```
-Backend domyślnie nasłuchuje na porcie `8080`.
+The backend server will start on port `8080` by default.
 
-### Krok 3: Uruchomienie Frontend (React)
-1. Przejdź do katalogu frontendu:
+### Step 3: Run the Frontend (React)
+1. Navigate to the frontend directory:
    ```bash
    cd src/main/frontend
    ```
-2. Zainstaluj wymagane zależności:
+2. Install the dependencies:
    ```bash
    npm install
    ```
-3. Uruchom aplikację w trybie deweloperskim:
+3. Run the development server:
    ```bash
    npm run dev
    ```
-Aplikacja frontendowa zostanie uruchomiona domyślnie pod adresem `http://localhost:5173/`.
+The frontend application will be available at `http://localhost:5173/`.
 
 ---
 
-## 📁 Struktura Projektu
+## 📁 Project Structure
 
 ```text
 ├── .gitignore
@@ -100,15 +100,15 @@ Aplikacja frontendowa zostanie uruchomiona domyślnie pod adresem `http://localh
 ├── src/
 │   ├── main/
 │   │   ├── java/com/example/radnom/
-│   │   │   ├── config/       # Konfiguracja Security, JWT, CORS
-│   │   │   ├── controller/   # Endpointy API REST
-│   │   │   ├── entity/       # Model danych (JPA Entities)
-│   │   │   ├── exception/    # Obsługa wyjątków i błędów
-│   │   │   ├── repository/   # Interfejsy JPA Repository
-│   │   │   └── service/      # Logika biznesowa i integracje
+│   │   │   ├── config/       # Security, JWT, CORS configurations
+│   │   │   ├── controller/   # REST API Controllers
+│   │   │   ├── entity/       # JPA Entities / Models
+│   │   │   ├── exception/    # Global Exception Handlers
+│   │   │   ├── repository/   # JPA Repositories
+│   │   │   └── service/      # Business Logic Services
 │   │   ├── resources/
-│   │   │   ├── templates/    # Szablony Thymeleaf
-│   │   │   └── data.sql      # Dane inicjalizacyjne
-│   │   └── frontend/         # Aplikacja React + Vite (SPA)
-│   └── test/                 # Testy jednostkowe i integracyjne backendu
+│   │   │   ├── templates/    # Thymeleaf templates
+│   │   │   └── data.sql      # Database initialization script
+│   │   └── frontend/         # React + Vite frontend application
+│   └── test/                 # Backend unit & integration tests
 ```
