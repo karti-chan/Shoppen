@@ -1,4 +1,4 @@
-package com.example.radnom;
+package com.example.radnom.controller;
 
 import com.example.radnom.controller.ProductController;
 import com.example.radnom.entity.Product;

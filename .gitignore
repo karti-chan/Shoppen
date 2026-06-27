@@ -1,4 +1,4 @@
-﻿# Maven
+# Maven
 target/
 *.jar
 *.war
@@ -30,3 +30,7 @@ src/main/java/com/example/radnom/.env
 application.properties
 application-prod.properties
 application-sandbox.properties
+
+# Database files
+data/
+*.db

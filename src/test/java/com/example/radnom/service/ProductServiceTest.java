@@ -1,4 +1,4 @@
-package com.example.radnom;
+package com.example.radnom.service;
 
 import com.example.radnom.entity.Product;
 import com.example.radnom.entity.dto.QuickSearchResultDTO;

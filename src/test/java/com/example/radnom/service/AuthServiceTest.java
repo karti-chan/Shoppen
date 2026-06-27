@@ -1,4 +1,4 @@
-package com.example.radnom;
+package com.example.radnom.service;
 
 import com.example.radnom.entity.User;
 import com.example.radnom.entity.dto.*;

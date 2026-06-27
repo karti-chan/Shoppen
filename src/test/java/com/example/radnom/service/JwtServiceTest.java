@@ -1,4 +1,4 @@
-package com.example.radnom;
+package com.example.radnom.service;
 
 import com.example.radnom.service.JwtService;
 import org.junit.jupiter.api.DisplayName;
