@@ -46,7 +46,7 @@ public class CartControllerTest {
     }
 
     @Test
-    @DisplayName("GET /api/cart - powinien zwrócić koszyk zalogowanego użytkownika")
+    @DisplayName("GET /api/cart - should return user cart")
     void shouldReturnUserCart() throws Exception {
         when(cartService.getCartDTO(anyString())).thenReturn(mockCartDTO);
 
@@ -63,7 +63,7 @@ public class CartControllerTest {
     }
 
     @Test
-    @DisplayName("GET /api/cart - publiczny endpoint działa bez autoryzacji")
+    @DisplayName("GET /api/cart - public endpoint works without authentication")
     void shouldReturn200WhenNotAuthenticated() throws Exception {
         when(cartService.getCartDTO(anyString())).thenReturn(mockCartDTO);
 

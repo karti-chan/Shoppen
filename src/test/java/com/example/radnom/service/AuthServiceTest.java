@@ -76,7 +76,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien zarejestrować nowego użytkownika")
+    @DisplayName("Should register new user")
     void shouldRegisterNewUser() {
         when(userRepository.existsByUsername("janek123")).thenReturn(false);
         when(userRepository.existsByEmail("janek@example.com")).thenReturn(false);
@@ -92,7 +92,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien rzucić wyjątek przy duplikacie username")
+    @DisplayName("Should throw exception when username exists")
     void shouldThrowExceptionWhenUsernameExists() {
         when(userRepository.existsByUsername("janek123")).thenReturn(true);
 
@@ -104,7 +104,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien rzucić wyjątek przy duplikacie email")
+    @DisplayName("Should throw exception when email exists")
     void shouldThrowExceptionWhenEmailExists() {
         when(userRepository.existsByUsername("janek123")).thenReturn(false);
         when(userRepository.existsByEmail("janek@example.com")).thenReturn(true);
@@ -117,7 +117,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien zalogować użytkownika z poprawnymi danymi")
+    @DisplayName("Should login user with correct credentials")
     void shouldLoginUserWithCorrectCredentials() {
         when(userRepository.findByUsername("janek123")).thenReturn(Optional.of(testUser));
         when(passwordEncoder.matches("Haslo123!", "encodedPassword")).thenReturn(true);
@@ -142,7 +142,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien rzucić wyjątek przy złym haśle")
+    @DisplayName("Should throw exception when wrong password")
     void shouldThrowExceptionWhenWrongPassword() {
         when(userRepository.findByUsername("janek123")).thenReturn(Optional.of(testUser));
         when(passwordEncoder.matches("Haslo123!", "encodedPassword")).thenReturn(false);
@@ -156,7 +156,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien rzucić wyjątek gdy użytkownik nie istnieje")
+    @DisplayName("Should throw exception when user not found")
     void shouldThrowExceptionWhenUserNotFound() {
         when(userRepository.findByUsername("janek123")).thenReturn(Optional.empty());
 
@@ -169,7 +169,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien odświeżyć token")
+    @DisplayName("Should refresh access token")
     void shouldRefreshAccessToken() {
         String refreshToken = "valid-refresh-token";
         when(jwtService.isRefreshToken(refreshToken)).thenReturn(true);
@@ -189,7 +189,7 @@ class AuthServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien rzucić wyjątek przy odświeżaniu z null tokenem")
+    @DisplayName("Should throw exception when refresh token is null")
     void shouldThrowExceptionWhenRefreshTokenIsNull() {
         assertThatThrownBy(() -> authService.refreshAccessToken(null))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -77,7 +77,7 @@ class CartServiceTest {
 
 
     @Test
-    @DisplayName("Powinien zwrócić liczbę przedmiotów w koszyku")
+    @DisplayName("Should return cart item count")
     void shouldReturnCartItemCount() {
         testCart.getItems().add(testCartItem);
         when(cartRepository.findByUserEmail("test@example.com")).thenReturn(Optional.of(testCart));
@@ -87,7 +87,7 @@ class CartServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien dodać nowy produkt do koszyka i zwrócić DTO")
+    @DisplayName("Should add new product to cart and return DTO")
     void shouldAddNewProductToCart() {
 
         when(cartRepository.findByUserEmail("test@example.com")).thenReturn(Optional.of(testCart));
@@ -105,7 +105,7 @@ class CartServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien usunąć produkt z koszyka i zwrócić DTO")
+    @DisplayName("Should remove product from cart and return DTO")
     void shouldRemoveProductFromCart() {
 
         testCart.getItems().add(testCartItem);
@@ -126,7 +126,7 @@ class CartServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien obliczać poprawną sumę koszyka")
+    @DisplayName("Should calculate correct cart total")
     void shouldCalculateCartTotal() {
         CartItem item1 = new CartItem();
         item1.setPrice(100);
@@ -142,7 +142,7 @@ class CartServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien zwrócić DTO koszyka")
+    @DisplayName("Should return cart DTO")
     void shouldReturnCartDTO() {
         when(cartRepository.findByUserEmail("test@example.com")).thenReturn(Optional.of(testCart));
         when(cartMapper.toDTO(testCart)).thenReturn(testCartDTO);
@@ -155,7 +155,7 @@ class CartServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien zwrócić listę DTO przedmiotów w koszyku")
+    @DisplayName("Should return list of DTO items in cart")
     void shouldReturnCartItemsDTO() {
         testCart.getItems().add(testCartItem);
 

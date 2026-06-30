@@ -17,7 +17,7 @@ class JwtServiceTest {
     private JwtService jwtService;
 
     @Test
-    @DisplayName("Powinien generować token")
+    @DisplayName("Should generate token")
     void shouldGenerateToken() {
         UserDetails userDetails = User.withUsername("test@example.com")
                 .password("password")
@@ -32,7 +32,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien wyciągać username z tokenu")
+    @DisplayName("Should extract username from token")
     void shouldExtractUsernameFromToken() {
         UserDetails userDetails = User.withUsername("jan.kowalski@example.com")
                 .password("pass")
@@ -46,7 +46,7 @@ class JwtServiceTest {
     }
 
     @Test
-    @DisplayName("Token powinien być ważny dla poprawnego użytkownika")
+    @DisplayName("Token should be valid for correct user")
     void shouldValidateToken() {
         UserDetails userDetails = User.withUsername("testuser")
                 .password("pass")

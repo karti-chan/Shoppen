@@ -35,7 +35,7 @@ class ProductControllerTest {
     void setUp() {
         sampleProducts = List.of(
                 createProduct(1, "Laptop", 2999, "Electronics"),
-                createProduct(2, "Myszka", 129, "Electronics")
+                createProduct(2, "Mouse", 129, "Electronics")
         );
     }
 
@@ -49,7 +49,7 @@ class ProductControllerTest {
     }
 
     @Test
-    @DisplayName("GET /api/products - powinien zwrócić listę produktów")
+    @DisplayName("GET /api/products - should return the list of products")
     void shouldReturnAllProducts() throws Exception {
         when(productService.getAllProducts()).thenReturn(sampleProducts);
 

@@ -32,9 +32,9 @@ class ProductServiceTest {
     @BeforeEach
     void setUp() {
         sampleProducts = Arrays.asList(
-                createProduct(1, "Laptop Gamingowy", 2500, "Electronics"),
-                createProduct(2, "Myszka bezprzewodowa", 89, "Electronics"),
-                createProduct(3, "Kawa ziarnista", 45, "Food")
+                createProduct(1, "Gaming Laptop", 2500, "Electronics"),
+                createProduct(2, "Wireless Mouse", 89, "Electronics"),
+                createProduct(3, "Coffee Beans", 45, "Food")
         );
     }
 
@@ -44,12 +44,12 @@ class ProductServiceTest {
         p.setProductName(name);
         p.setPrice(price);
         p.setCategory(category);
-        p.setDescription("Opis produktu " + name);
+        p.setDescription("Product description: " + name);
         return p;
     }
 
     @Test
-    @DisplayName("Powinien zwrócić wszystkie produkty")
+    @DisplayName("Should return all products")
     void shouldReturnAllProducts() {
         when(productRepository.findAll()).thenReturn(sampleProducts);
 
@@ -57,11 +57,11 @@ class ProductServiceTest {
 
         assertThat(result).hasSize(3);
         assertThat(result).extracting(Product::getProductName)
-                .containsExactly("Laptop Gamingowy", "Myszka bezprzewodowa", "Kawa ziarnista");
+                .containsExactly("Gaming Laptop", "Wireless Mouse", "Coffee Beans");
     }
 
     @Test
-    @DisplayName("Powinien filtrować produkty po kategorii")
+    @DisplayName("Should filter products by category")
     void shouldFilterByCategory() {
         when(productRepository.findByCategory("Electronics"))
                 .thenReturn(Arrays.asList(sampleProducts.get(0), sampleProducts.get(1)));
@@ -73,7 +73,7 @@ class ProductServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien wyszukiwać produkty po nazwie lub opisie")
+    @DisplayName("Should search products by name or description")
     void shouldSearchByName() {
         // given
         when(productRepository.searchByNameOrDescription("laptop"))
@@ -88,7 +88,7 @@ class ProductServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien zwrócić puste wyniki dla pustego zapytania wyszukiwania")
+    @DisplayName("Should return empty list for empty search query")
     void shouldReturnEmptyWhenQueryIsEmpty() {
         List<Product> result = productService.searchProducts("   ");
 
@@ -96,19 +96,19 @@ class ProductServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien filtrować produkty w zakresie cenowym")
+    @DisplayName("Should filter products in price range")
     void shouldFilterByPriceRange() {
         when(productRepository.findAll()).thenReturn(sampleProducts);
 
         List<Product> result = productService.getProductsByPriceRange(50, 2000);
 
-        assertThat(result).hasSize(2); // Myszka i Kawa
+        assertThat(result).hasSize(2); // Mouse and Coffee
         assertThat(result).extracting(Product::getPrice)
                 .allMatch(price -> price >= 50 && price <= 2000);
     }
 
     @Test
-    @DisplayName("Powinien sortować produkty po cenie rosnąco")
+    @DisplayName("Should sort products by price ascending")
     void shouldSortByPriceAsc() {
         when(productRepository.findAll()).thenReturn(sampleProducts);
 
@@ -119,7 +119,7 @@ class ProductServiceTest {
     }
 
     @Test
-    @DisplayName("Powinien zwrócić poprawne kategorie")
+    @DisplayName("Should return unique categories")
     void shouldReturnUniqueCategories() {
         when(productRepository.findAll()).thenReturn(sampleProducts);
 
@@ -129,7 +129,7 @@ class ProductServiceTest {
     }
 
     @Test
-    @DisplayName("Quick search powinien ograniczać liczbę wyników")
+    @DisplayName("Quick search should limit the number of results")
     void shouldLimitQuickSearchResults() {
         when(productRepository.searchByNameOrDescription("a"))
                 .thenReturn(sampleProducts);
