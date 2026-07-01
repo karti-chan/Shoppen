@@ -19,7 +19,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
 @WebMvcTest(CartController.class)
 @WithMockUser(username = "kaszanek@example.com", roles = "USER")
 public class CartControllerTest {
@@ -70,5 +69,19 @@ public class CartControllerTest {
         mockMvc.perform(get("/api/cart"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.cartId").value(1L));
+    }
+
+    @Test
+    @DisplayName("GET /api/cart - should return 500 when service throws RuntimeException")
+    void shouldReturn500WhenServiceThrowsRuntimeException() throws Exception {
+
+        when(cartService.getCartDTO(anyString()))
+                .thenThrow(new RuntimeException("Database connection error"));
+
+        mockMvc.perform(get("/api/cart"))
+                .andExpect(status().isInternalServerError())
+                .andExpect(content().string("Internal server error"));
+
+        verify(cartService, times(1)).getCartDTO(anyString());
     }
 }
